@@ -73,3 +73,5 @@
 
 export:
     auto: true
+sync:
+    remote: "git+ssh://git@github.com/AvogadroSG1/draidus.git"
