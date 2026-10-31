@@ -1,32 +1,57 @@
-import obsidianmd from 'eslint-plugin-obsidianmd';
-import globals from 'globals';
 import { globalIgnores, defineConfig } from 'eslint/config';
+import obsidianmd from 'eslint-plugin-obsidianmd';
+import { PlainTextParser } from 'eslint-plugin-obsidianmd/dist/lib/plainTextParser.js';
+import tseslint from 'typescript-eslint';
 
-export default defineConfig(
+const moduleUrl = new URL('.', import.meta.url);
+const tsconfigRootDir =
+	moduleUrl.hostname === ''
+		? decodeURIComponent(moduleUrl.pathname.replace(/^\/(?=[A-Z]:\/)/i, ''))
+		: `//${moduleUrl.hostname}${decodeURIComponent(moduleUrl.pathname)}`;
+export default defineConfig([
 	globalIgnores([
 		'node_modules',
 		'dist',
+		'apm_modules',
 		'esbuild.config.mjs',
 		'version-bump.mjs',
-		'versions.json',
 		'main.js',
-		'package.json',
 		'package-lock.json',
-		'tsconfig.json',
 	]),
+	...obsidianmd.configs.recommended,
 	{
 		languageOptions: {
-			globals: {
-				...globals.browser,
-			},
 			parserOptions: {
 				projectService: {
 					allowDefaultProject: ['eslint.config.mts', 'manifest.json'],
 				},
-				tsconfigRootDir: import.meta.dirname,
-				extraFileExtensions: ['.json'],
+				tsconfigRootDir,
 			},
 		},
 	},
-	...obsidianmd.configs.recommended,
-);
+	{
+		files: ['manifest.json'],
+		languageOptions: {
+			parser: tseslint.parser,
+			parserOptions: {
+				projectService: {
+					allowDefaultProject: ['manifest.json'],
+				},
+				tsconfigRootDir,
+				extraFileExtensions: ['.json'],
+			},
+		},
+		rules: {
+			'obsidianmd/validate-manifest': 'error',
+		},
+	},
+	{
+		files: ['LICENSE'],
+		languageOptions: {
+			parser: PlainTextParser,
+		},
+		rules: {
+			'obsidianmd/validate-license': 'error',
+		},
+	},
+]);

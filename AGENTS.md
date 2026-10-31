@@ -37,7 +37,7 @@ npm run build
 
 - ESLint is preconfigured with `eslint-plugin-obsidianmd` for Obsidian-specific rules.
 - Run `npm run lint` to lint the project.
-- A GitHub Action automatically lints every commit on all branches.
+- CI runs Obsidian's workflow with strict and scanner-lint checks on pull requests to `main` and pushes to `main`.
 
 ## File & folder conventions
 
