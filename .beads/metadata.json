@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "draidus",
+  "project_id": "b963ea35-8a2a-406d-8e62-3976d0d0b56f"
+}
