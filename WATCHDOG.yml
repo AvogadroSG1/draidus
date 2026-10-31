@@ -1,0 +1,16 @@
+advisors:
+  - name: default
+    model: openai/gpt-6-luna:high
+    tools:
+      - read
+      - security_scan
+      - ast_grep
+      - ask
+      - glob
+      - grep
+      - find
+      - lsp
+      - checkpoint
+      - task
+      - todo
+      - web_search
