@@ -25,6 +25,10 @@ Use the following scripts from the repository root:
 - `npm run dev` starts the development build in watch mode and writes the bundled plugin to `main.js`.
 - `npm run build` performs a production build.
 - `npm run lint` checks the project with ESLint.
+- `npm run verify` runs linting followed by the production build.
+- `npm install` activates the repository's `.beads/hooks` directory for this Git worktree when run from the repository root. The setup uses Git only and does not require the Beads CLI; it no-ops outside a Git worktree.
+
+Both pre-commit and pre-push hooks run `npm run verify` and block the operation if linting or the production build fails. The plugin is an empty starter with no automated test suite, so no app tests are currently available to run.
 
 After building, reload Obsidian to load the updated plugin.
 

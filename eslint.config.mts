@@ -23,7 +23,7 @@ export default defineConfig([
 		languageOptions: {
 			parserOptions: {
 				projectService: {
-					allowDefaultProject: ['eslint.config.mts', 'manifest.json'],
+					allowDefaultProject: ['eslint.config.mts', 'manifest.json', 'scripts/setup-git-hooks.mjs'],
 				},
 				tsconfigRootDir,
 			},
@@ -34,9 +34,6 @@ export default defineConfig([
 		languageOptions: {
 			parser: tseslint.parser,
 			parserOptions: {
-				projectService: {
-					allowDefaultProject: ['manifest.json'],
-				},
 				tsconfigRootDir,
 				extraFileExtensions: ['.json'],
 			},
