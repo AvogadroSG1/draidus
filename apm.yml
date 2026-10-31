@@ -1,0 +1,7 @@
+dependencies:
+  apm: [/Users/poconnor/peter_code/ai_support/plugins/marketplaces/mattpocock]
+  mcp: []
+targets:
+  - codex
+name: draidus
+version: 0.1.0
